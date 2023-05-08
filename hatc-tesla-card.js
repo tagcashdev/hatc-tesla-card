@@ -83,7 +83,7 @@ class HatcTeslaCard extends LitElement {
         if(hassEntity){
             return html`
                 <ha-card class="HatcTeslaCard">
-                    <img style="" src="./tesla-img/car.jpg">
+                    <img style="" src="/local/hatc-tesla/car.jpg">
                 </ha-card>
             `;
         }else{
