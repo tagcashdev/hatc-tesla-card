@@ -75,15 +75,18 @@ class HatcTeslaCard extends LitElement {
     static getStubConfig() {
         return { entity: "sun.sun" }
     }
+    
 
     // Whenever the state changes, a new `hass` object is set. Use this to
     // update your content.
     render() {
+        const cardSize = getCardSize();
         const hassEntity = this.hass.states[this.config.entity];
         if(hassEntity){
             return html`
                 <ha-card class="HatcTeslaCard">
-                    <img style="" src="/local/hatc-tesla/car.jpg">
+                    <img class="tesla" style="" src="/local/hatc-tesla/car.jpg">
+                    ceci est le cardSize : ${cardSize}
                 </ha-card>
             `;
         }else{
@@ -106,12 +109,6 @@ class HatcTeslaCard extends LitElement {
     // distribute all cards over the available columns.
     getCardSize() {
         return this.config.entities.length + 1;
-    }
-
-    _toggle(state, service) {
-        this.hass.callService(service, "toggle", {
-            entity_id: state.entity_id
-        });
     }
 
     _handlePopup(e) {
@@ -153,7 +150,15 @@ class HatcTeslaCard extends LitElement {
             :root, .HatcTeslaCard *{
                 --mdc-icon-size: 16px;   
                 --card-padding: 8px;
+
+            }
+            .HatcTeslaCard {
                 background-color: #141518;
+            }
+            .HatcTeslaCard img.tesla{
+                width: calc(100% - 20px);
+                margin: 10px auto;
+                display: block;
             }
         `;
     }
